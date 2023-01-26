@@ -103,3 +103,7 @@ h1{
 .ant-card .ant-card-body{
     padding: 0;
 }
+
+.ant-card-meta.owner{
+    margin-top: 10px;
+}

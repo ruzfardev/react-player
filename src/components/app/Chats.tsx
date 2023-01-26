@@ -45,45 +45,47 @@ export const Chats = () => {
       }}
     >
       {chats &&
-        Object.entries(chats)?.map((chat) => (
-          <List.Item
-            onClick={() => handleSelectChat(chat[1].userInfo)}
-            key={chat[0]}
-            style={{
-              padding: "0.5rem",
-              cursor: "pointer",
-            }}
-          >
-            <Avatar
-              src={chat[1].userInfo.avatar}
-              size={55}
-              style={{ marginRight: "1rem", border: "2px solid #1890ff" }}
-            />
+        Object.entries(chats)
+          ?.sort((a, b) => a[1].date - b[1].date)
+          .map((chat) => (
+            <List.Item
+              onClick={() => handleSelectChat(chat[1].userInfo)}
+              key={chat[0]}
+              style={{
+                padding: "0.5rem",
+                cursor: "pointer",
+              }}
+            >
+              <Avatar
+                src={chat[1].userInfo.avatar}
+                size={55}
+                style={{ marginRight: "1rem", border: "2px solid #1890ff" }}
+              />
 
-            <List.Item.Meta
-              title={chat[1].userInfo.name}
-              description={
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <span style={{ color: "#202020" }}>
-                    {chat[1].lastMessage
-                      ? chat[1].lastMessage.text
-                      : "No messages"}
-                  </span>
-                  <span style={{ color: "#202020", fontSize: "0.8rem" }}>
-                    {" "}
-                    12:00 AM
-                  </span>
-                </div>
-              }
-            />
-          </List.Item>
-        ))}
+              <List.Item.Meta
+                title={chat[1].userInfo.name}
+                description={
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span style={{ color: "#202020" }}>
+                      {chat[1].lastMessage
+                        ? chat[1].lastMessage.text
+                        : "No messages"}
+                    </span>
+                    <span style={{ color: "#202020", fontSize: "0.8rem" }}>
+                      {" "}
+                      12:00 AM
+                    </span>
+                  </div>
+                }
+              />
+            </List.Item>
+          ))}
     </List>
   );
 };

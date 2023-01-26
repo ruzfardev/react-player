@@ -16,7 +16,6 @@ import { ISendMessage } from "../../models/sendMessage.model";
 import { db, storage } from "../../services/firebase";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { updateProfile } from "firebase/auth";
 import { useForm } from "antd/es/form/Form";
 export const SendInput = () => {
   const [form] = useForm();
@@ -25,6 +24,7 @@ export const SendInput = () => {
   const { data } = useContext(ChatContext);
 
   const sendMessage = async (values: ISendMessage) => {
+    if (!values.text && !values.image) return;
     console.log(values);
     if (values.image) {
       const storageRef = ref(storage, `images/${uuid()}`);

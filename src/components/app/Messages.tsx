@@ -21,13 +21,13 @@ export const Messages = () => {
         unsub();
       };
     };
-    data?.chatID && getChats();
+    getChats();
   }, [data.chatID]);
   console.log(messages);
   return (
     <Content className="hide_scrollbar">
-      {messages?.length > 0 ? (
-        messages?.map((message: any) => (
+      {messages ? (
+        messages?.messages.map((message: any) => (
           <Message key={message.id} message={message} />
         ))
       ) : (
